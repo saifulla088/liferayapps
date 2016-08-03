@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+#parse ($init)
+
+<html class="#language("lang.dir")" dir="#language("lang.dir")" lang="$w3c_language_id">
+
+<head>
+	<title>$the_title - ATS Alumini</title>
+
+	$theme.include($top_head_include)
+</head>
+
+<body class="$css_class" style="background-image:url($images_folder/img2.jpg);background-size:100% 102%;background-repeat:no-repeat;">
+
+$theme.include($body_top_include)
+
+#if ($is_signed_in)
+	#dockbar()
+#end
+
+<div id="wrapper" style="background-color:#ECF9FC;height:100%;width:80%;margin-top:5px;margin-bottom:-20px;border:3px solid black;border-radius:10px;-webkit-box-shadow:1px 1px 14px rgba(152, 210, 224, 0.75);-moz-box-shadow:1px 1px 14px rgba(152, 210, 224, 0.75);box-shadow:1px 1px 14px rgba(152, 210, 224, 0.75);">
+	<div style="background-image: url($images_folder/travell.png) ;margin-top:-21px;width:100%;background-size:100% 100%;height:183px;border-top-left-radius:6px;border-top-right-radius:6px;">
+	<a href="#main-content" id="skip-to-content">#language("skip-to-content")</a>
+	
+<table  style="margin-top: 2%;margin-left: 5%; width: 90%;"><tr><td style="width: 70%;">
+	<header id="banner" role="banner"  ">
+		<div id="heading" >
+			<h1 class="site-title">
+				<a class="$logo_css_class" href="$site_default_url" title="#language("go-to") $site_name">
+					<img alt="$logo_description" height="$site_logo_height" src="$images_folder/logo.png" style="margin-bottom:-10%;"  width="$site_logo_width" />
+				</a>
+				#*
+				#if ($show_site_name)
+					<span class="site-name" title="#language("go-to") $site_name">
+						$site_name
+					</span>
+				#end
+				*#
+			</h1>
+
+			<h2 class="page-title">
+				<span>$the_title</span>
+			</h2>
+		</div>
+        </td><td style="width: 30%;">
+        #*
+        <table style="margin-left: 2%; margin-top: 26%;width:100%;"><tr>
+        
+         <td style=" margin-top:2%;"><span style="color:black;font-weight:bold;font-size:14px;padding-left: 10%;">Need Help? Call +91 990 181 9537</span></td>
+         
+         </tr>
+         
+         </table>
+        *#
+   </td></tr></table></div>
+		#if (!$is_signed_in)
+			<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+		#end
+		#if ($has_navigation || $is_signed_in)
+			#parse ("$full_templates_path/navigation.vm")
+		#end
+	</header>
+	##$theme.include($themeServletContext, “/jsp/home.jsp”)
+	<div id="content" style="margin-top:-6%;">
+		#if ($selectable)
+			$theme.include($content_include)
+		#else
+			$portletDisplay.recycle()
+
+			$portletDisplay.setTitle($the_title)
+
+			$theme.wrapPortlet("portlet.vm", $content_include)
+		#end
+	</div>
+
+	<footer id="footer" role="contentinfo" style="background-image: linear-gradient(#00B6C6, #0F0E80); height: 57px; margin-top: 20px;border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+	
+		<p class="powered-by" style="padding-top:1.5%;font-weight:bold;color:white;font-size:15px;text-align:center;"> 
+			#language("Powered-By ") <a href="http://www.atsglobal.in" target="_blank" rel="external" style="text-decoration:none;color:white">  ATS Global Solutions</a>
+		</p>
+		
+
+	</footer>
+
+
+$theme.include($body_bottom_include)
+</div>
+</body>
+
+$theme.include($bottom_include)
+</html>
